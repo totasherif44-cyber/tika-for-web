@@ -1,0 +1,5 @@
+.vscode/
+__pycache__/
+tests/__pycache__/
+*.py[cod]
+project web.zip

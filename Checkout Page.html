@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>اتمام الطلب</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 20px;
+    }
+    .container {
+      max-width: 450px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      background: #28a745;
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    button:hover {
+      background: #218838;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>ادخال بيانات التوصيل</h2>
+
+  <label>الاسم الكامل:</label>
+  <input type="text" id="name" placeholder="اكتب اسمك هنا" />
+
+  <label>رقم الهاتف:</label>
+  <input type="text" id="phone" placeholder="اكتب رقمك هنا" />
+
+  <label>العنوان داخل الإسكندرية فقط:</label>
+  <input type="text" id="address" placeholder="مثال: سيدي بشر - بجوار محطة كذا" />
+
+  <div class="error" id="error"></div>
+
+  <button onclick="confirmOrder()">اتمام الطلب</button>
+</div>
+
+<script>
+function confirmOrder() {
+  let name = document.getElementById("name").value.trim();
+  let phone = document.getElementById("phone").value.trim();
+  let address = document.getElementById("address").value.trim();
+  let errorBox = document.getElementById("error");
+
+  // تحقق من البيانات
+  if (name === "" || phone === "" || address === "") {
+    errorBox.innerHTML = "من فضلك املأ كل البيانات";
+    return;
+  }
+
+  if (!phone.match(/^01[0-2,5]{1}[0-9]{8}$/)) {
+    errorBox.innerHTML = "رقم الهاتف غير صحيح";
+    return;
+  }
+
+  if (!address.includes("اسكندري") && !address.includes("الإسكندري")) {
+    errorBox.innerHTML = "عذرا.. التوصيل داخل الإسكندرية فقط";
+    return;
+  }
+
+  // لو كله تمام
+  alert("تم استلام طلبك بنجاح! سيتم التواصل معك خلال دقائق للتأكيد.");
+
+  // انتقال لصفحة نجاح وهمية
+  window.location.href = "thankyou.html";
+}
+</script>
+
+</body>
+</html>

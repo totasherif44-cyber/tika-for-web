@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التقييمات — الحاتي</title>
+
+<style>
+/* -------------------- Reset -------------------- */
+*{
+  margin:0; padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', Tahoma, sans-serif;
+}
+body{
+  background:#fafafa;
+  color:#222;
+}
+
+/* -------------------- Navbar -------------------- */
+header{
+  background:#ffffff;
+  padding:15px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #eee;
+}
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:#ff6b35;
+}
+nav a{
+  text-decoration:none;
+  color:#333;
+  margin-left:15px;
+  padding:8px 12px;
+  border-radius:8px;
+}
+nav a.active{
+  background:#ff6b35;
+  color:white;
+}
+
+/* -------------------- Title -------------------- */
+.page-title{
+  width:90%;
+  margin:25px auto;
+  font-size:28px;
+  font-weight:700;
+}
+
+/* -------------------- Reviews Grid -------------------- */
+.reviews{
+  width:90%;
+  margin:20px auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:16px;
+}
+.card{
+  background:white;
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.06);
+}
+.card h3{
+  margin-bottom:10px;
+  color:#ff6b35;
+}
+
+/* -------------------- Review Form -------------------- */
+form{
+  width:90%;
+  margin:25px auto;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.06);
+}
+input,textarea,select{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border:1px solid #ccc;
+  border-radius:10px;
+}
+button{
+  padding:12px 18px;
+  background:#ff6b35;
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  width:100%;
+}
+button:hover{
+  background:#e55d2e;
+}
+
+/* -------------------- Responsive -------------------- */
+@media(max-width:600px){
+  .page-title{font-size:24px;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">الحاتي</div>
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="menu.html">المينيو</a>
+    <a href="cart.html">السلة</a>
+    <a href="reviews.html" class="active">التقييمات</a>
+  </nav>
+</header>
+
+<h1 class="page-title">تقييمات العملاء</h1>
+
+<div class="reviews">
+  <div class="card">
+    <h3>★★★★★ — عطيه</h3>
+    <p>أكل جامد جدًا والتوصيل أسرع مما توقعت!</p>
+  </div>
+
+  <div class="card">
+    <h3>★★★★☆ — الصافي</h3>
+    <p>البيتزا خطيرة جدًا!</p>
+  </div>
+
+  <div class="card">
+    <h3>★★★★★ — يوسف</h3>
+    <p>أفضل مطعم جربته الفترة دي!</p>
+  </div>
+</div>
+
+<form>
+  <h2 style="margin-bottom:15px;color:#ff6b35;">أضف تقييمك</h2>
+  <input type="text" placeholder="الاسم" required>
+  <textarea placeholder="اكتب تقييمك" required></textarea>
+  <select>
+    <option>★★★★★</option>
+    <option>★★★★☆</option>
+    <option>★★★☆☆</option>
+    <option>★★☆☆☆</option>
+    <option>★☆☆☆☆</option>
+  </select>
+  <button type="submit">إرسال</button>
+</form>
+
+</body>
+</html>

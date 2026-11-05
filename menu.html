@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الحاتي — المينيو</title>
+
+<style>
+/* -------------------- Reset -------------------- */
+*{
+  margin:0; padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', Tahoma, sans-serif;
+}
+body{
+  background:#fafafa;
+  color:#222;
+}
+
+/* -------------------- Navbar -------------------- */
+header{
+  background:#ffffff;
+  padding:15px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #eee;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:#ff6b35;
+}
+nav a{
+  text-decoration:none;
+  color:#333;
+  margin-left:15px;
+  padding:8px 12px;
+  border-radius:8px;
+  transition:0.2s ease;
+}
+nav a:hover{
+  background:#f5f5f5;
+}
+nav a.active{
+  background:#ff6b35;
+  color:white;
+}
+
+/* -------------------- Title -------------------- */
+.page-title{
+  width:90%;
+  margin:25px auto 10px;
+  font-size:28px;
+  font-weight:700;
+}
+
+/* -------------------- Filters -------------------- */
+.filters{
+  width:90%;
+  margin:10px auto 25px;
+  display:flex;
+  gap:10px;
+}
+.filters button{
+  padding:8px 14px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  background:white;
+  cursor:pointer;
+  font-size:15px;
+  transition:0.2s;
+}
+.filters button:hover{
+  background:#ffe7dc;
+  border-color:#ff6b35;
+}
+
+/* -------------------- Menu Grid -------------------- */
+.menu-grid{
+  width:90%;
+  margin:0 auto 40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+  gap:18px;
+}
+.card{
+  background:white;
+  border-radius:14px;
+  box-shadow:0px 4px 10px rgba(0,0,0,0.06);
+  overflow:hidden;
+  transition:0.2s ease;
+}
+.card:hover{
+  transform:translateY(-4px);
+}
+.card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+}
+.card .info{
+  padding:15px;
+}
+.card h3{
+  margin-bottom:8px;
+  font-size:18px;
+}
+.price{
+  color:#ff6b35;
+  font-weight:700;
+  margin-bottom:10px;
+}
+.add-btn{
+  background:#ff6b35;
+  color:white;
+  padding:10px;
+  width:100%;
+  border-radius:8px;
+  text-align:center;
+  display:block;
+  text-decoration:none;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- -------------------- Navbar -------------------- -->
+<header>
+  <div class="logo">الحاتي</div>
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="menu.html" class="active">المينيو</a>
+    <a href="csv-converter.html">تحويل CSV</a>
+    <a href="cart.html">السلة</a>
+    <a href="reviews.html">التقييمات</a>
+    <a href="about.html">من نحن</a>
+  </nav>
+</header>
+
+<!-- -------------------- Title -------------------- -->
+<h1 class="page-title">قائمة الطعام</h1>
+
+<!-- -------------------- Filters -------------------- -->
+<div class="filters">
+  <button onclick="filterMenu('all')">الكل</button>
+  <button onclick="filterMenu('pizza')">بيتزا</button>
+  <button onclick="filterMenu('burger')">برجر</button>
+  <button onclick="filterMenu('drink')">مشروبات</button>
+  <button onclick="filterMenu('dessert')">حلويات</button>
+</div>
+
+<!-- -------------------- Menu Grid -------------------- -->
+<div class="menu-grid" id="menuGrid">
+
+  <!-- عنصر طعام (كرّرتهم لك كلهم) -->
+  <div class="card pizza" data-name="بيتزا مارجريتا" data-price="120" data-img="image/3452c8720013eddbccdb4d72c81bb2a3b31138e8.jpg">
+    <img src="image/3452c8720013eddbccdb4d72c81bb2a3b31138e8.jpg">
+    <div class="info">
+      <h3>بيتزا مارجريتا</h3>
+      <div class="price">120 EGP</div>
+      <div class="add-btn" onclick="addToCart(this)">أضف إلى السلة</div>
+    </div>
+  </div>
+
+  <div class="card pizza" data-name="بيتزا بيبروني" data-price="140" data-img="image/293db6634be1582bae74ec2454f59eca01f3feee.jpg">
+    <img src="image/293db6634be1582bae74ec2454f59eca01f3feee.jpg">
+    <div class="info">
+      <h3>بيتزا بيبروني</h3>
+      <div class="price">140 EGP</div>
+      <div class="add-btn" onclick="addToCart(this)">أضف إلى السلة</div>
+    </div>
+  </div>
+
+  <div class="card burger" data-name="برجر لحم" data-price="90" data-img="image/images (1).jpg">
+    <img src="image/images (1).jpg">
+    <div class="info">
+      <h3>برجر لحم</h3>
+      <div class="price">90 EGP</div>
+      <div class="add-btn" onclick="addToCart(this)">أضف إلى السلة</div>
+    </div>
+  </div>
+
+  <div class="card burger" data-name="برجر فراخ" data-price="80" data-img="image/images (2).jpg">
+    <img src="image/images (2).jpg">
+    <div class="info">
+      <h3>برجر فراخ</h3>
+      <div class="price">80 EGP</div>
+      <div class="add-btn" onclick="addToCart(this)">أضف إلى السلة</div>
+    </div>
+  </div>
+
+  <div class="card drink" data-name="عصير برتقال طبيعي" data-price="30" data-img="image/DrAxeOrangeJuiceThumbnail.jpg">
+    <img src="image/DrAxeOrangeJuiceThumbnail.jpg">
+    <div class="info">
+      <h3>عصير برتقال طبيعي</h3>
+      <div class="price">30 EGP</div>
+      <div class="add-btn" onclick="addToCart(this)">أضف إلى السلة</div>
+    </div>
+  </div>
+
+  <div class="card drink" data-name="بيبسي" data-price="20" data-img="image/5656588.jpg">
+    <img src="image/5656588.jpg">
+    <div class="info">
+      <h3>بيبسي</h3>
+      <div class="price">20 EGP</div>
+      <div class="add-btn" onclick="addToCart(this)">أضف إلى السلة</div>
+    </div>
+  </div>
+
+  <div class="card dessert" data-name="كيكة الشوكولاتة" data-price="55" data-img="image/ramadanrecipe_recipe_1192_38863635ef6-3c3a-425b-ac37-11051c6cbf18.jpg">
+    <img src="image/ramadanrecipe_recipe_1192_38863635ef6-3c3a-425b-ac37-11051c6cbf18.jpg">
+    <div class="info">
+      <h3>كيكة الشوكولاتة</h3>
+      <div class="price">55 EGP</div>
+      <div class="add-btn" onclick="addToCart(this)">أضف إلى السلة</div>
+    </div>
+  </div>
+
+  <div class="card dessert" data-name="دونات" data-price="55" data-img="image/5706317e05c640795925c3d64e0de61476d03fce.jpg">
+    <img src="image/5706317e05c640795925c3d64e0de61476d03fce.jpg">
+    <div class="info">
+      <h3>دونات</h3>
+      <div class="price">55 EGP</div>
+      <div class="add-btn" onclick="addToCart(this)">أضف إلى السلة</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- -------------------- Filtering + Cart Script -------------------- -->
+<script>
+function filterMenu(cat){
+  const items = document.querySelectorAll('.card');
+  items.forEach(item=>{
+    if(cat === 'all'){
+      item.style.display = 'block';
+    }else{
+      item.style.display = item.classList.contains(cat) ? 'block' : 'none';
+    }
+  });
+}
+
+/* ------------ Add to Cart ------------ */
+function addToCart(btn){
+  const card = btn.closest(".card");
+
+  const item = {
+    name: card.dataset.name,
+    price: Number(card.dataset.price),
+    img: card.dataset.img,
+    qty: 1
+  };
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const exists = cart.find(i => i.name === item.name);
+  if(exists){
+    exists.qty += 1;
+  }else{
+    cart.push(item);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  window.location.href = "cart.html";
+}
+</script>
+
+</body>
+</html>

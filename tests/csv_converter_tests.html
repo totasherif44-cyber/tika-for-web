@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>CSV converter tests</title>
+<body>
+  <pre id="results">Running tests...</pre>
+  <script src="../csv_converter.js"></script>
+  <script>
+    const passed = [];
+    function test(name, callback) {
+      callback();
+      passed.push(name);
+    }
+    function assert(condition, message) {
+      if (!condition) throw new Error(message);
+    }
+    function equal(actual, expected, message) {
+      assert(JSON.stringify(actual) === JSON.stringify(expected), message);
+    }
+    test('headers, escaped quotes, Unicode, and CRLF', function () {
+      const parsed = CsvConverter.parseCsv(
+        '\uFEFFname,city,note\r\n"Ada Lovelace","München & 東京","says ""hello"""\r\n'
+      );
+      equal(parsed.headers, ['name', 'city', 'note'], 'Headers were not parsed.');
+      equal(parsed.rows, [{
+        name: 'Ada Lovelace',
+        city: 'München & 東京',
+        note: 'says "hello"'
+      }], 'Quoted values or Unicode were not preserved.');
+    });
+    test('quoted commas and line breaks', function () {
+      const parsed = CsvConverter.parseCsv('id,description\n1,"first, line\nsecond line"\n');
+      equal(parsed.rows[0], { id: '1', description: 'first, line\nsecond line' },
+        'Quoted comma or newline was not preserved.');
+    });
+    test('missing values become empty strings', function () {
+      const parsed = CsvConverter.parseCsv('a,b\n1\n');
+      equal(parsed.rows[0], { a: '1', b: '' }, 'Missing value was not filled.');
+    });
+    test('rejects duplicate headers and unclosed quotes', function () {
+      let duplicateRejected = false;
+      let quoteRejected = false;
+      let invalidQuotePlacementRejected = false;
+      try { CsvConverter.parseCsv('a,a\n1,2'); } catch (error) { duplicateRejected = true; }
+      try { CsvConverter.parseCsv('a\n"unfinished'); } catch (error) { quoteRejected = true; }
+      try { CsvConverter.parseCsv('a\n"quoted"x'); } catch (error) {
+        invalidQuotePlacementRejected = true;
+      }
+      assert(duplicateRejected && quoteRejected && invalidQuotePlacementRejected,
+        'Malformed CSV was not rejected.');
+    });
+    test('rejects extra values and blank headers', function () {
+      let extraValueRejected = false;
+      let blankHeaderRejected = false;
+      try { CsvConverter.parseCsv('a\n1,2'); } catch (error) { extraValueRejected = true; }
+      try { CsvConverter.parseCsv('a,\n1,2'); } catch (error) { blankHeaderRejected = true; }
+      assert(extraValueRejected && blankHeaderRejected, 'Invalid columns were not rejected.');
+    });
+    document.getElementById('results').textContent =
+      'Passed ' + passed.length + ' tests:\n- ' + passed.join('\n- ');
+  </script>
+</body>
+</html>

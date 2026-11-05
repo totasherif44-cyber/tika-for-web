@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تحويل CSV إلى JSON — الحاتي</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="csv_converter.js" defer></script>
+</head>
+<body class="site">
+  <header class="site-header">
+    <a class="logo" href="index.html">الحاتي</a>
+    <nav class="nav" aria-label="التنقل الرئيسي">
+      <a href="index.html">الرئيسية</a>
+      <a href="menu.html">المينيو</a>
+      <a class="active" href="csv-converter.html" aria-current="page">تحويل CSV</a>
+      <a href="cart.html">السلة</a>
+    </nav>
+  </header>
+
+  <main class="container csv-converter">
+    <section class="converter-card" aria-labelledby="converter-title">
+      <span class="converter-eyebrow">أداة مجانية — تعمل داخل متصفحك</span>
+      <h1 id="converter-title">حوّل ملف CSV إلى JSON</h1>
+      <p class="converter-intro">
+        اختر ملف CSV لتحويل صفوفه إلى JSON منسق. سيتم استخدام عناوين الأعمدة كمفاتيح،
+        ولن يتم رفع ملفك إلى أي خادم.
+      </p>
+
+      <form id="csv-upload-form">
+        <label class="file-picker" for="csv-file">
+          <span class="file-picker-icon" aria-hidden="true">↑</span>
+          <span><strong>اختر ملف CSV</strong><small>ملفات CSV بترميز UTF-8</small></span>
+          <input id="csv-file" name="csv-file" type="file" accept=".csv,text/csv" required>
+        </label>
+        <button class="btn-primary convert-button" type="submit">تحويل إلى JSON</button>
+      </form>
+
+      <p id="csv-status" class="csv-status" role="status" aria-live="polite"></p>
+
+      <section id="csv-result" class="csv-result" aria-labelledby="result-title" hidden>
+        <div class="result-heading">
+          <div>
+            <h2 id="result-title">النتيجة</h2>
+            <p id="csv-summary"></p>
+          </div>
+          <button id="download-json" class="btn-primary" type="button" disabled>
+            تنزيل ملف JSON
+          </button>
+        </div>
+        <pre id="json-preview" class="json-preview" dir="ltr"></pre>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

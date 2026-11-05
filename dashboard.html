@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+body{background:#fafafa;}
+header{background:#fff;padding:15px 25px;display:flex;justify-content:space-between;
+align-items:center;border-bottom:1px solid #eee;}
+.logo{font-size:22px;font-weight:700;color:#ff6b35;}
+nav a{text-decoration:none;color:#333;margin-left:15px;padding:8px 12px;border-radius:8px;}
+nav a.active{background:#ff6b35;color:#fff;}
+.container{width:90%;margin:20px auto;display:flex;gap:20px;}
+.sidebar{width:220px;background:white;padding:20px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+.sidebar a{display:block;padding:10px 0;text-decoration:none;color:#333;}
+.dashboard-box{flex:1;background:white;padding:20px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+.order{padding:12px;border-bottom:1px solid #eee;}
+.report-box{margin-top:20px;height:200px;border-radius:12px;border:2px dashed #ddd;
+display:flex;justify-content:center;align-items:center;color:#888;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">لوحة التحكم</div>
+  <nav>
+    <a href="dashboard.html" class="active">طلبات</a>
+    <a href="index.html">الموقع</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <div class="sidebar">
+    <a href="#">الطلبات</a>
+    <a href="#">الأكلات</a>
+    <a href="#">التقارير</a>
+  </div>
+
+  <div class="dashboard-box">
+    <h2>الطلبات الواردة</h2>
+
+    <div class="order">طلب #1001 — 140 EGP — جار التحضير</div>
+    <div class="order">طلب #1002 — 90 EGP — في الطريق</div>
+
+    <div class="report-box">رسم بياني (عرض فقط)</div>
+  </div>
+
+</div>
+
+</body>
+</html>
